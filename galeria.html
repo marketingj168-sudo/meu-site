@@ -1,0 +1,41 @@
+<!-- CARROSSEL -->
+<div style="text-align: center; background: #1a1a1a; padding: 20px; border-radius: 10px; margin: 20px 0;">
+    
+    <img id="fotoPrincipal" src="images/SPA1.jpeg" style="width: 100%; max-width: 400px; border-radius: 10px;">
+    
+    <div style="margin-top: 15px;">
+        <button onclick="fotoAnterior()" style="background: #ff69b4; color: white; border: none; padding: 10px 25px; margin: 5px; border-radius: 5px; cursor: pointer;">◀ Anterior</button>
+        <button onclick="proximaFoto()" style="background: #ff69b4; color: white; border: none; padding: 10px 25px; margin: 5px; border-radius: 5px; cursor: pointer;">Próximo ▶</button>
+    </div>
+    
+    <div style="margin-top: 10px;">
+        <span id="indicador" style="color: #ff69b4; font-size: 14px;">Foto 1 de 3</span>
+    </div>
+</div>
+
+<script>
+    let galeria = [
+        "images/SPA1.jpeg",
+        "images/SPA2.jpeg",
+        "images/SPA3.jpeg"
+    ];
+    let fotoAtual = 0;
+    let totalFotos = galeria.length;
+    
+    function proximaFoto() {
+        fotoAtual++;
+        if (fotoAtual >= totalFotos) fotoAtual = 0;
+        atualizarFoto();
+    }
+    
+    function fotoAnterior() {
+        fotoAtual--;
+        if (fotoAtual < 0) fotoAtual = totalFotos - 1;
+        atualizarFoto();
+    }
+    
+    function atualizarFoto() {
+        document.getElementById("fotoPrincipal").src = galeria[fotoAtual];
+        document.getElementById("indicador").innerHTML = "Foto " + (fotoAtual + 1) + " de " + totalFotos;
+    }
+</script>
